@@ -1,0 +1,41 @@
+<include file="Index/header" />
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9 col-md-9">
+
+					<div class="news-list">
+						<volist name="result['listNews']" id="vo">
+							<dl>
+								<dt>{$vo.title}</dt>
+								<dd class="news-img">
+									<a href="/index.php?c=detail&id={$vo.news_id}"><img width="200" height="120" src="{$vo.thumb}" alt="{$vo.title}"></a>
+								</dd>
+								<dd class="news-intro">
+									{$vo.description}
+								</dd>
+								<dd class="news-info">
+									{$vo.keywords} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span> 阅读({$vo.count})
+								</dd>
+							</dl>
+						</volist>
+					{$result['pageres']}
+
+					</div>
+					
+					<!--<button id="sing_more" type="button" class="btn btn-primary btn-lg btn-block sing_display_none">更多</button>-->
+				</div>
+				<!--start right -->
+
+				<include file="Index/right" />
+				<!-- end right-->
+			</div>
+		</div>
+	</section>
+</body>
+<script src="/Public/js/jquery.js"></script>
+<script>
+	
+</script>
+<script src="/Public/js/home/common.js"></script>
+</html>

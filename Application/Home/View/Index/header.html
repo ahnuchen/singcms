@@ -1,0 +1,35 @@
+<?php
+   $config = D("Basic")->select();
+   $navs = D("Menu")->getBarMenus();
+?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{$config.title}</title>
+  <meta name="keywords" content="{$config.keywords}" />
+  <meta name="description" content="{$config.description}" />
+  <script src="/Public/js/jquery.js"></script>
+  <link rel="stylesheet" href="/Public/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+  <script src="/Public/js/dialog/layer.js"></script>
+  <script src="/Public/js/dialog.js"></script>
+</head>
+<body>
+<header id="header">
+  <div class="navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/">
+          <img src="/Public/images/logo.png" alt="">
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="/" <if condition="$result['catId'] eq 0">class="curr"</if>>首页</a></li>
+        <foreach name="navs" item="vo">
+          <li><a href="/index.php?c=cat&id={$vo.menu_id}" <if condition="$vo['menu_id'] eq $result['catId']">class="curr"</if>>{$vo.name}</a></li>
+        </foreach>
+      </ul>
+    </div>
+  </div>
+</header>

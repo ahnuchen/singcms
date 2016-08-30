@@ -1,0 +1,68 @@
+<include file="Index/header" />
+<body>
+<div id="wrapper">
+
+  <include file="Index/nav"/>
+<div id="page-wrapper">
+
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<include file="Basic/button"/>
+		<!-- /.row -->
+		<div class="row">
+					<label for="cache-index" class="ontrol-label">更新首页缓存:</label>
+
+						<button type="button" class="btn" id="cache-index">确定更新</button>
+
+		</div>
+		<hr />
+		<div class="row">
+			<label for="backup-sql" class="">备份数据库:&nbsp&nbsp</label>
+			<button type="button" class="btn" id="backup-sql">确定备份</button>
+		</div>
+
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+<script type="text/javascript" src="/Public/js/admin/form.js"></script>
+<script>
+  $("#cache-index").click(function(){
+
+	var url = 'index.php?c=index&a=build_html';
+	var jump_url = '/admin.php?c=basic&a=cache';
+	var postData = {};
+
+	$.post(url, postData,function(result){
+	  if(result.status==1) {
+		// 成功
+		return dialog.success(result.message,jump_url);
+	  }else if(result.status==0) {
+		return dialog.error(result.message);
+	  }
+
+	},"JSON");
+  });
+	$("#backup-sql").click(function () {
+		var url = "/admin.php?c=cron&a=dumpmysql";
+		var jump_url= '/admin.php?c=basic&a=cache';
+		var postData = {};
+		$.post(url,postData,function (result) {
+			if(result.status==1){
+				return dialog.success(result.message,jump_url);
+			}
+			if(result.status==0){
+				return dialog.error(result.message);
+			}
+		},"JSON")
+	})
+
+</script>
+<include file="Index/footer" />

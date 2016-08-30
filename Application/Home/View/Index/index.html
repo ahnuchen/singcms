@@ -1,0 +1,48 @@
+<include file="Index/header" />
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-9">
+        <div class="banner">
+          <div class="banner-left">
+            <div class="banner-info"><span>阅读数</span><i class="news_count node-{$result['topPicNews'][0]['news_id']}" news-id="{$result['topPicNews'][0]['news_id']}" id="node-{$result['topPicNews'][0]['news_id']}"></i></div>
+            <a target="_blank" href="/index.php?c=detail&id={$result['topPicNews'][0]['news_id']}"><img width="670" height="360" src="{$result['topPicNews'][0]['thumb']}" alt=""></a>
+          </div>
+          <div class="banner-right">
+            <ul>
+              <volist name="result['topSmailNews']" id="vo">
+              <li>
+                <a target="_blank" href="/index.php?c=detail&id={$vo.news_id}"><img width="150" height="113" src="{$vo.thumb}" alt="{$vo.title}"></a>
+              </li>
+                </volist>
+
+            </ul>
+          </div>
+        </div>
+        <div class="news-list">
+          <volist name="result['listNews']" id="vo">
+          <dl>
+            <dt><a target="_blank" href="/index.php?c=detail&id={$vo.news_id}">{$vo.title}</a></dt>
+            <dd class="news-img">
+              <a target="_blank" href="/index.php?c=detail&id={$vo.news_id}"><img width="200" height="120" src="{$vo.thumb}" alt="{$vo.title}"></a>
+            </dd>
+            <dd class="news-intro">
+              {$vo.description}
+            </dd>
+            <dd class="news-info">
+              {$vo.keywords} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span> 阅读(<i news-id="{$vo.news_id}" class="news_count node-{$vo.news_id}">{$vo.count}</i>)
+            </dd>
+          </dl>
+          </volist>
+
+        </div>
+      </div>
+      <!--网站右侧信息-->
+      <include file="Index/right" />
+    </div>
+  </div>
+</section>
+</body>
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/count.js"></script>
+</html>
